@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="description" content="FiguPaloma — atrapa palomas, consigue Alas y mejora tu colección.">
+  <title>FiguPaloma</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">FIGUPALOMA</span>
+        <h1>La caza de <span>Alas</span></h1>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>🪽</span><strong id="alas">0</strong></div>
+        <div class="stat"><span>🔥</span><strong id="racha">0</strong></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <span class="badge" id="nombrePaloma">Paloma común</span>
+          <h2 id="ganancia">+1 🪽</h2>
+          <p>Toca la paloma antes de que cambie de lugar.</p>
+        </div>
+        <div class="difficulty" aria-label="Dificultad">
+          <button class="difficulty-btn active" data-dificultad="facil">Fácil</button>
+          <button class="difficulty-btn" data-dificultad="medio">Medio</button>
+          <button class="difficulty-btn" data-dificultad="dificil">Difícil</button>
+        </div>
+      </section>
+
+      <section class="game-card">
+        <div class="game-head">
+          <span>Zona de juego</span>
+          <span id="reloj">LISTO</span>
+        </div>
+        <div id="zonaJuego" class="game-zone">
+          <div id="mensajeCentral" class="center-message">Toca la paloma 🪽</div>
+          <button id="paloma" class="pigeon" aria-label="Atrapar paloma">
+            <img id="imagenPaloma" src="imagen/Paloma.png" alt="Paloma">
+          </button>
+        </div>
+      </section>
+
+      <nav class="nav-tabs" aria-label="Secciones">
+        <button class="nav-btn active" data-panel="tienda">Tienda</button>
+        <button class="nav-btn" data-panel="coleccion">Colección</button>
+        <button class="nav-btn" data-panel="mejoras">Mejoras</button>
+      </nav>
+
+      <section id="panelTienda" class="panel active">
+        <div class="section-title"><div><span class="eyebrow">TIENDA</span><h3>Nuevas palomas</h3></div></div>
+        <div id="productos" class="card-grid"></div>
+      </section>
+
+      <section id="panelColeccion" class="panel">
+        <div class="section-title"><div><span class="eyebrow">COLECCIÓN</span><h3>Tus palomas</h3></div></div>
+        <div id="coleccion" class="card-grid"></div>
+      </section>
+
+      <section id="panelMejoras" class="panel">
+        <div class="upgrade-card">
+          <div><div class="eyebrow">MEJORA</div><h3>Ganancia por captura</h3><p>Nivel <strong id="nivelMejora">0</strong> · +25% por nivel</p></div>
+          <button id="comprarMejora" class="primary-btn">Comprar</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="recompensa" class="reward-pop"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
