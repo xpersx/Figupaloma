@@ -1,14 +1,16 @@
 const KEY="figupaloma_v6";
 const PALOMAS={
-  comun:{nombre:"Paloma común",precio:0,ganancia:1,img:"imagen/Paloma.png"},
-  urbana:{nombre:"Paloma urbana",precio:100,ganancia:3,img:"imagen/PalomaUrbana.png"},
-  mensajera:{nombre:"Paloma mensajera",precio:750,ganancia:10,img:"imagen/PalomaMensajera.png"},
-  imperial:{nombre:"Paloma imperial",precio:5000,ganancia:35,img:"imagen/PalomaImperial.png"},
-  figueroa:{nombre:"Figueroa",precio:25000,ganancia:100,img:"imagen/PalomaFigueroa.png"}
+  comun:{nombre:"Paloma común",precio:0,ganancia:1,img:"imagen/Paloma.svg"},
+  urbana:{nombre:"Paloma urbana",precio:100,ganancia:3,img:"imagen/PalomaUrbana.svg"},
+  mensajera:{nombre:"Paloma mensajera",precio:750,ganancia:10,img:"imagen/PalomaMensajera.svg"},
+  imperial:{nombre:"Paloma imperial",precio:5000,ganancia:35,img:"imagen/PalomaImperial.svg"},
+  figueroa:{nombre:"Figueroa",precio:25000,ganancia:100,img:"imagen/PalomaFigueroa.svg"}
 };
 const SPEED={facil:1100,medio:650,dificil:350};
 let state=JSON.parse(localStorage.getItem(KEY)||"null")||{alas:0,racha:0,dificultad:"facil",activa:"comun",coleccion:["comun"],mejora:0};
 const $=s=>document.querySelector(s);
+const captureSound=new Audio("sonidos/captura.wav");
+captureSound.preload="auto";
 const alas=$("#alas"),racha=$("#racha"),nombre=$("#nombrePaloma"),ganancia=$("#ganancia"),pigeon=$("#paloma"),zone=$("#zonaJuego"),img=$("#imagenPaloma"),reloj=$("#reloj"),reward=$("#recompensa");
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function fmt(n){return Math.floor(n).toLocaleString("es-ES")}
@@ -25,8 +27,8 @@ function movePigeon(){
   pigeon.style.left=x+"px";pigeon.style.top=y+"px";reloj.textContent="EN MOVIMIENTO";
 }
 function schedule(){clearTimeout(window.moveTimer);movePigeon();window.moveTimer=setTimeout(schedule,SPEED[state.dificultad])}
-function capture(){
-  const p=PALOMAS[state.activa];state.racha++;
+function playCaptureSound(){try{captureSound.currentTime=0;captureSound.play().catch(()=>{});}catch(e){}}\nfunction capture(){
+  const p=PALOMAS[state.activa];state.racha++;playCaptureSound();
   const base=p.ganancia*(1+state.mejora*.25),streak=1+Math.min(state.racha,20)*.05;
   const earned=Math.max(1,Math.floor(base*streak));state.alas+=earned;save();render();
   reward.textContent="+"+fmt(earned)+" 🪽";reward.classList.remove("show");void reward.offsetWidth;reward.classList.add("show");
