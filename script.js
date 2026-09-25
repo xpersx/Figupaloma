@@ -7,6 +7,7 @@ const PALOMAS={
   figueroa:{nombre:"Figueroa",precio:25000,ganancia:100,img:"imagen/PalomaFigueroa.svg"}
 };
 const SPEED={facil:1100,medio:650,dificil:350};
+const DIFFICULTY_REWARD={facil:1,medio:2,dificil:3};
 let state=JSON.parse(localStorage.getItem(KEY)||"null")||{alas:0,racha:0,dificultad:"facil",activa:"comun",coleccion:["comun"],mejora:0};
 const $=s=>document.querySelector(s);
 const captureSound=new Audio("sonidos/captura.wav");
